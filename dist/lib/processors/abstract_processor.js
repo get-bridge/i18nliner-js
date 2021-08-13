@@ -34,6 +34,7 @@ function AbstractProcessor(translations, options) {
   this.pattern = options.pattern || this.defaultPattern;
   this.file = options.file;
   if (options.directory) this.directories = [options.directory];
+  this.except = options.except;
   this.only = options.only;
 }
 
@@ -45,6 +46,10 @@ AbstractProcessor.prototype.files = function (directory) {
   var pattern = this.pattern instanceof Array ? this.pattern : [this.pattern];
   return chdir(directory, function () {
     var fileScope = _gglobby2.default.select(pattern).reject(["/node_modules", "/bower_components"]).reject(_i18nliner2.default.ignore());
+    if (this.except) {
+      var except = this.except instanceof Array ? this.except : [this.except];
+      fileScope = fileScope.reject(except);
+    }
     if (this.only) {
       var only = this.only instanceof Array ? this.only : [this.only];
       fileScope = fileScope.select(only);
