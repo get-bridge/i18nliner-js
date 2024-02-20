@@ -25,7 +25,7 @@
     "grunt-contrib-copy": "~1.0.0",
     "gruntify-eslint": "~3.1.0",
     "matchdep": "~1.0.1",
-    "mocha": "~3.2.0",
+    "mocha": "~3.5.3",
     "rimraf": "~2.6.1",
     "sinon": "~1.17.7",
     "temp": "~0.8.3"
